@@ -17,7 +17,7 @@ sys.stderr = io.TextIOWrapper(sys.stderr.buffer, encoding='utf-8')
 
 # 環境設定
 iDir='C:/Data' # 画像ファイルが格納されているフォルダ
-pic_width=640 # 入力画像のサイズによらず、画像処理や出力画像はこの幅に設定
+pic_width=1920 # 入力画像のサイズによらず、画像処理や出力画像はこの幅に設定
     # pic_height（高さ）は入力画像の幅と高さの比から計算
 min_grainsize=0.0071 # 画像の幅に対する黒鉛の最小長さ（撮影した画像に応じて設定が必要）
     # min_grainsize=0.007はサンプル画像に対する値である。
@@ -139,6 +139,7 @@ def main():
     if output_file != "":
         print("最小黒鉛サイズ, {:.3f}".format(min_grainsize), file = output_file)
         print("丸み係数のしきい値, {:.3f}".format(marumi_ratio), file = output_file)
+        print("画像処理と出力画像の幅, {}".format(pic_width), file = output_file)
         print("ファイル名, 球状化率_ISO法(%), 球状化率_JIS法(%)", file = output_file)
         for i in range(len(filenames)):
             print("{}, {:.2f}, {:.2f}" .format(filenames[i], nodularity_ISO[i], nodularity_JIS[i]), file = output_file)
