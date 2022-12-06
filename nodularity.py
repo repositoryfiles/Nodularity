@@ -126,7 +126,7 @@ def main():
         # 球状化率（JIS法）
         nodularity_JIS.append((0.3 * num_graphite2 + 0.7 * num_graphite3 + 0.9 * num_graphite4 + 1.0 * num_graphite5)/ len(contours1) * 100)
         
-        # 結果のファイル保存（画像ファイル名＋_resで同じフォルダに保存）
+        # 画像ファイルの保存
         src = filename
         idx = src.rfind(r'.')
         result_ISO_filename = src[:idx] + "_nodularity(ISO)." + src[idx+1:]
@@ -134,6 +134,7 @@ def main():
         cv2.imwrite(result_ISO_filename, img_color_ISO)
         cv2.imwrite(result_JIS_filename, img_color_JIS)
 
+    # 球状化率などのデータの保存
     now = datetime.datetime.now()
     output_file = open(str(os.path.dirname(filenames[0])) + '/nodularity_{0:%Y%m%d%H%M}'.format(now) + ".csv", 'w')
     if output_file != "":
