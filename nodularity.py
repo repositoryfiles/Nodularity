@@ -136,14 +136,17 @@ def main():
 
     # 球状化率などのデータの保存
     now = datetime.datetime.now()
-    output_file = open(str(os.path.dirname(filenames[0])) + '/nodularity_{0:%Y%m%d%H%M}'.format(now) + ".csv", 'w')
-    if output_file != "":
-        print("最小黒鉛サイズ, {:.3f}".format(min_grainsize), file = output_file)
-        print("丸み係数のしきい値, {:.3f}".format(marumi_ratio), file = output_file)
-        print("画像処理と出力画像の幅, {}".format(pic_width), file = output_file)
-        print("ファイル名, 球状化率_ISO法(%), 球状化率_JIS法(%)", file = output_file)
-        for i in range(len(filenames)):
-            print("{}, {:.2f}, {:.2f}" .format(filenames[i], nodularity_ISO[i], nodularity_JIS[i]), file = output_file)
 
+    output_file = str(os.path.dirname(filenames[0])) + '/nodularity_{0:%Y%m%d%H%M}'.format(now) + ".csv"
+
+    with open(output_file, mode='w') as f1:
+        print("最小黒鉛サイズ, {:.3f}".format(min_grainsize), file = f1)
+        print("丸み係数のしきい値, {:.3f}".format(marumi_ratio), file = f1)
+        print("画像処理と出力画像の幅, {}".format(pic_width), file = f1)
+        print("ファイル名, 球状化率_ISO法(%), 球状化率_JIS法(%)", file = f1)
+        for i in range(len(filenames)):
+            print("{}, {:.2f}, {:.2f}" .format(filenames[i], nodularity_ISO[i], nodularity_JIS[i]), file = f1)
+
+            
 if __name__ == "__main__":
     main()
